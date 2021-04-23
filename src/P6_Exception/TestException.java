@@ -1,3 +1,5 @@
+package P6_Exception;
+
 import org.junit.Test;
 
 public class TestException {

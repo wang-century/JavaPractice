@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JavaPractice.iml" filepath="$PROJECT_DIR$/JavaPractice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P6_Exception/P6_Exception.iml" filepath="$PROJECT_DIR$/P6_Exception/P6_Exception.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P8_IO/P8_IO.iml" filepath="$PROJECT_DIR$/P8_IO/P8_IO.iml" />
     </modules>
   </component>
 </project>
