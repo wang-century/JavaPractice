@@ -122,47 +122,187 @@ public class T1_File {
     /**
      * 6.目录
      */
-    public void T6_Directory(){
+    public void T6_Directory() {
         // 创建目录(非递归)
         File file = new File("./TestDir");
         boolean flag = file.mkdir();
-        if (flag){
+        if (flag) {
             System.out.println("创建目录成功");
         }
         flag = file.delete();
-        if (flag){
+        if (flag) {
             System.out.println("目录删除成功");
         }
         // 创建目录(递归)
         file = new File("./dirs/dir1");
         flag = file.mkdirs();
-        if (flag){
+        if (flag) {
             System.out.println("创建目录成功");
         }
         flag = file.delete();
-        if (flag){
+        if (flag) {
             System.out.println("目录删除成功");
         }
         // 列出下级目录
         file = new File("src");
         String[] subDirs = file.list();
-        if (subDirs!=null){
+        if (subDirs != null) {
             System.out.println("下级目录：");
-            for (String dirName:subDirs){
-                System.out.print(dirName+"\t");
+            for (String dirName : subDirs) {
+                System.out.print(dirName + "\t");
             }
             System.out.println();
         }
         // 列出下级文件
         file = new File("./");
         File[] subFiles = file.listFiles();
-        if (subFiles!=null){
+        if (subFiles != null) {
             System.out.println("下级文件：");
-            for (File f:subFiles){
-                System.out.print(f.getName()+"\t");
+            for (File f : subFiles) {
+                System.out.print(f.getName() + "\t");
             }
         }
 
+    }
+
+    @Test
+    /**
+     * 7.列出指定目录下的所有目录及文件
+     */
+    public void T7_ListAllDirsFiles() {
+        File dir = new File("./");
+        ListAllDirsFiles(dir);
+    }
+
+    public void ListAllDirsFiles(File dir) {
+        String[] subs = dir.list();
+        if (subs == null) {
+            System.out.println("目录为空");
+            return;
+        }
+        File file;
+        for (String s : subs) {
+            file = new File(dir, s);
+            if (file.isDirectory()) {
+                System.out.println("-- " + s);
+                ListAllDirsFiles(file, "\t");
+            } else {
+                System.out.println("\t| " + s);
+            }
+        }
+    }
+
+    public void ListAllDirsFiles(File dir, String separate) {
+        String[] subs = dir.list();
+        if (subs == null) {
+            System.out.println("目录为空");
+            return;
+        }
+        File file;
+        for (String s : subs) {
+            file = new File(dir, s);
+            if (file.isDirectory()) {
+                System.out.println(separate + "-- " + s);
+                ListAllDirsFiles(file, separate + "\t");
+            } else {
+                System.out.println(separate + "| " + s);
+            }
+        }
+    }
+
+    @Test
+    /**
+     * 8.统计文件夹大小
+     */
+    public void T8_CountFolderSize() {
+        File file = new File("/home/centuryw/图片");
+        CountFolderSize(file);
+        System.out.println("文件夹大小为:"+folderSize+"字节");
+        System.out.println("文件夹大小为:"+(int)(CountFolderSize2(file))+"字节");
+        // 使用类
+        DirCount dirCount = new DirCount("/home/centuryw/图片");
+        System.out.println("文件夹大小为:"+dirCount.getSize()+"字节");
+        System.out.println("文件夹个数为:"+dirCount.getDirCount());
+        System.out.println("文件个数为:"+dirCount.getFileCount());
+    }
+
+    public static long folderSize = 0;
+    public void CountFolderSize(File folder) {
+        // 获取大小
+        if (folder!=null && folder.exists()){
+            // 如果是文件，统计大小，否则
+            if (folder.isFile()){
+                folderSize += folder.length();
+            }else{
+                for (File f:folder.listFiles()){
+                    CountFolderSize(f);
+                }
+            }
+        }
+    }
+
+    public double CountFolderSize2(File folder){
+        long sumSize = 0;
+        // 目标是否为目录，是目录扫描全部，否则返回文件大小
+        if (folder.isDirectory()){
+            // 获取目录下所有目录
+            File[] files = folder.listFiles();
+            for (File f:files){
+                if (f.isFile()){
+                    sumSize += f.length();
+                }else{
+                    sumSize += CountFolderSize2(f);
+                }
+            }
+            return sumSize;
+        }else{
+            return folder.length();
+        }
+    }
+
+}
+
+
+
+class DirCount{
+    private long size;  // 目录大小
+    private File root; // 源目录
+    private int fileCount;  // 文件个数
+    private int dirCount = -1;   // 目录个数(减去本身 本身也被统计了)
+
+    public DirCount(String dirName){
+        root = new File(dirName);
+        count(root);
+    }
+
+    private void count(File folder) {
+        // 获取大小
+        if (folder!=null && folder.exists()){
+            // 如果是文件，统计大小，否则
+            if (folder.isFile()){
+                size += folder.length();
+                fileCount += 1;
+            }else{
+                dirCount += 1;
+                for (File f:folder.listFiles()){
+                    count(f);
+                }
+            }
+        }
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+
+    public int getFileCount() {
+        return fileCount;
+    }
+
+
+    public int getDirCount() {
+        return dirCount;
     }
 
 }
