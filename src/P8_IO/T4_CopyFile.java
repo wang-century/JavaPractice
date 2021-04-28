@@ -17,7 +17,7 @@ public class T4_CopyFile {
      */
     @Test
     public void T1_() {
-         copy("TestFiles/test.jpg","TestFiles/test2.jpg");
+         copy("TestFiles/IOTest.txt","TestFiles/IOTest5.txt");
     }
 
     /**
