@@ -24,7 +24,7 @@ P8_IO           IO流使用
     - T6_ByteArrayStream    字节数组流
     - T7_ByteArrayDemo      字节数组例子：图片读取到字节数组再转回图片
     - T8_FileUtils          文件工具：封装拷贝、封装释放资源、特性：释放资源 try...with...resource
-    
-    
+    - T9_Decorator1         装饰器设计模式：实现对声音的放大功能
+    - T10_Decorator2        装饰器设计模式：模拟咖啡
 
 </pre>
