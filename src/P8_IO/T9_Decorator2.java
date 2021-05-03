@@ -37,20 +37,6 @@ interface Drink{
     String info();  // 说明
 }
 
-class Coffee implements Drink{
-    private String name = "咖啡";
-
-    @Override
-    public double cost() {
-        return 10;
-    }
-
-    @Override
-    public String info() {
-        return name;
-    }
-}
-
 /**
  * @description: 抽象装饰类
  * @author centuryw
@@ -73,6 +59,22 @@ abstract class Decorate implements Drink{
         return this.drink.info();
     }
 }
+
+class Coffee implements Drink{
+    private String name = "咖啡";
+
+    @Override
+    public double cost() {
+        return 10;
+    }
+
+    @Override
+    public String info() {
+        return name;
+    }
+}
+
+
 
 /**
  * @description: 具体装饰类
