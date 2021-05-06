@@ -1,10 +1,9 @@
-package P8_IO;
+package cn.centuryw.java.Practice.P8_IO;
 
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 
 /**

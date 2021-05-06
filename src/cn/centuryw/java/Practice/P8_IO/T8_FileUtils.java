@@ -1,4 +1,4 @@
-package P8_IO;
+package cn.centuryw.java.Practice.P8_IO;
 
 import java.io.*;
 

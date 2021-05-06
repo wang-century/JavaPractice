@@ -1,4 +1,4 @@
-package P6_Exception;
+package cn.centuryw.java.Practice.P6_Exception;
 
 import org.junit.Test;
 
