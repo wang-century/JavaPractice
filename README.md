@@ -2,6 +2,10 @@
 
 <pre>
 Practice
+    - P4_OOArray    面向对象、数组
+        - T1_String     String类常用方法
+        - T2_ArrayCopy  数组拷贝
+        - T3_Arrays     Arrays工具类的使用(打印数组、数组排序、二分法查找)
     - P6_Exception    异常捕获
         - TestException     自定义异常
     
